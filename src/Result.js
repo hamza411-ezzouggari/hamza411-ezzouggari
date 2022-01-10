@@ -1,6 +1,13 @@
 import React from "react";
+import { io } from "socket.io-client";
 
 function Result() {
+  const socket = io("ws://localhost:4000");
+  socket.on("message", (data) => {
+    socket.on("start", () => {
+      trackTickers(socket);
+    });
+  });
   return (
     <div className="Result-finance">
       <div className="title">

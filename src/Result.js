@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { io } from "socket.io-client";
 
+let socket;
+const CONNECTION_PORT = "http://192.168.0.104:4000/";
+
 function Result() {
-  const socket = io("ws://localhost:4000");
-  socket.on("message", (data) => {
-    socket.on("start", () => {
-      trackTickers(socket);
-    });
-  });
+  useEffect(() => {
+    socket = io(CONNECTION_PORT);
+  }, [CONNECTION_PORT]);
+
   return (
     <div className="Result-finance">
       <div className="title">

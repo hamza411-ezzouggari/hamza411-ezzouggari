@@ -15,12 +15,108 @@ function Result() {
         <header className="header">
           <div className="vReuC">
             <div className="lkR3Y-general">
-              <div className="lkR3Y">hamza</div>
-              <div className="lkR3Y">hamza</div>
-              <div className="lkR3Y">hamza</div>
-              <div className="lkR3Y">hamza</div>
-              <div className="lkR3Y">hamza</div>
-              <div className="lkR3Y">hamza</div>
+              <div className="lkR3Y">
+                <div className="n1rUf-QxH">
+                  <div className="Qxh-arrows">
+                    <span>&#8593;</span>
+                  </div>
+                </div>
+                <div className="initial-information">
+                  <div className="information-2">
+                    <p>AAPL</p>
+                    <p>34590.2</p>
+                  </div>
+                  <div className="information">
+                    <p>+0.51</p>
+                    <p>+183.54</p>
+                  </div>
+                </div>
+              </div>
+              <div className="lkR3Y">
+                <div className="n1rUf-QxH">
+                  <div className="Qxh-arrows">
+                    <span>&#8593;</span>
+                  </div>
+                </div>
+                <div className="initial-information">
+                  <div className="information-2">
+                    <p>GOOGLE</p>
+                    <p>34590.2</p>
+                  </div>
+                  <div className="information">
+                    <p>+0.51</p>
+                    <p>+183.54</p>
+                  </div>
+                </div>
+              </div>
+              <div className="lkR3Y">
+                <div className="n1rUf-QxH">
+                  <div className="Qxh-arrows">
+                    <span>&#8593;</span>
+                  </div>
+                </div>
+                <div className="initial-information">
+                  <div className="information-2">
+                    <p>MSFT</p>
+                    <p>34590.2</p>
+                  </div>
+                  <div className="information">
+                    <p>+0.51</p>
+                    <p>+183.54</p>
+                  </div>
+                </div>
+              </div>
+              <div className="lkR3Y">
+                <div className="n1rUf-QxH">
+                  <div className="Qxh-arrows">
+                    <span>&#8593;</span>
+                  </div>
+                </div>
+                <div className="initial-information">
+                  <div className="information-2">
+                    <p>AMZN</p>
+                    <p>34590.2</p>
+                  </div>
+                  <div className="information">
+                    <p>+0.51</p>
+                    <p>+183.54</p>
+                  </div>
+                </div>
+              </div>
+              <div className="lkR3Y">
+                <div className="n1rUf-QxH">
+                  <div className="Qxh-arrows">
+                    <span>&#8593;</span>
+                  </div>
+                </div>
+                <div className="initial-information">
+                  <div className="information-2">
+                    <p>FB</p>
+                    <p>34590.2</p>
+                  </div>
+                  <div className="information">
+                    <p>+0.51</p>
+                    <p>+183.54</p>
+                  </div>
+                </div>
+              </div>
+              <div className="lkR3Y">
+                <div className="n1rUf-QxH">
+                  <div className="Qxh-arrows">
+                    <span>&#8593;</span>
+                  </div>
+                </div>
+                <div className="initial-information">
+                  <div className="information-2">
+                    <p>TSLA</p>
+                    <p>34590.2</p>
+                  </div>
+                  <div className="information">
+                    <p>+0.51</p>
+                    <p>+183.54</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <img

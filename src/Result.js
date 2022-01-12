@@ -11,8 +11,18 @@ function Result() {
 
   return (
     <div className="Result-finance">
-      <div className="title">
-        <h3>Vous pourriez être intéressé par ces actions</h3>
+      <div className="header-Section">
+        <header className="header">
+          <img src="https://ssl.gstatic.com/finance/images/landingpage4.svg" />
+          <div className="vReuC">
+            <div className="lkR3Y"></div>
+            <div className="lkR3Y"></div>
+            <div className="lkR3Y"></div>
+            <div className="lkR3Y"></div>
+            <div className="lkR3Y"></div>
+            <div className="lkR3Y"></div>
+          </div>
+        </header>
       </div>
       <div className="hr">
         <hr />

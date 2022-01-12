@@ -13,15 +13,20 @@ function Result() {
     <div className="Result-finance">
       <div className="header-Section">
         <header className="header">
-          <img src="https://ssl.gstatic.com/finance/images/landingpage4.svg" />
           <div className="vReuC">
-            <div className="lkR3Y"></div>
-            <div className="lkR3Y"></div>
-            <div className="lkR3Y"></div>
-            <div className="lkR3Y"></div>
-            <div className="lkR3Y"></div>
-            <div className="lkR3Y"></div>
+            <div className="lkR3Y-general">
+              <div className="lkR3Y">hamza</div>
+              <div className="lkR3Y">hamza</div>
+              <div className="lkR3Y">hamza</div>
+              <div className="lkR3Y">hamza</div>
+              <div className="lkR3Y">hamza</div>
+              <div className="lkR3Y">hamza</div>
+            </div>
           </div>
+          <img
+            className="image"
+            src="https://ssl.gstatic.com/finance/images/landingpage4.svg"
+          />
         </header>
       </div>
       <div className="hr">

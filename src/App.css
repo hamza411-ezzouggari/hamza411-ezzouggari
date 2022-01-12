@@ -1,3 +1,20 @@
 * {
   margin: 0px;
 }
+.image {
+  width: 100%;
+}
+.vReuC {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  margin-top: 2rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.lkR3Y-general {
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+}

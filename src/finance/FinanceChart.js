@@ -1,73 +1,53 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
+import "./FinanceChart.css";
 class ApexChart extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       series: [
         {
-          name: "XYZ MOTORS",
-          data: dates,
+          name: "series1",
+          data: [31, 40, 28, 51, 42, 109, 100],
+        },
+        {
+          name: "series2",
+          data: [11, 32, 45, 32, 34, 52, 41],
         },
       ],
       options: {
         chart: {
-          type: "area",
-          stacked: false,
           height: 350,
-          zoom: {
-            type: "x",
-            enabled: true,
-            autoScaleYaxis: true,
-          },
-          toolbar: {
-            autoSelected: "zoom",
-          },
+          type: "area",
         },
         dataLabels: {
           enabled: false,
         },
-        markers: {
-          size: 0,
-        },
-        title: {
-          text: "Stock Price Movement",
-          align: "left",
-        },
-        fill: {
-          type: "gradient",
-          gradient: {
-            shadeIntensity: 1,
-            inverseColors: false,
-            opacityFrom: 0.5,
-            opacityTo: 0,
-            stops: [0, 90, 100],
-          },
-        },
-        yaxis: {
-          labels: {
-            formatter: function (val) {
-              return (val / 1000000).toFixed(0);
-            },
-          },
-          title: {
-            text: "Price",
-          },
+        stroke: {
+          curve: "smooth",
         },
         xaxis: {
           type: "datetime",
+          categories: [
+            "2018-09-19T00:00:00.000Z",
+            "2018-09-19T01:30:00.000Z",
+            "2018-09-19T02:30:00.000Z",
+            "2018-09-19T03:30:00.000Z",
+            "2018-09-19T04:30:00.000Z",
+            "2018-09-19T05:30:00.000Z",
+            "2018-09-19T06:30:00.000Z",
+          ],
         },
         tooltip: {
-          shared: false,
-          y: {
-            formatter: function (val) {
-              return (val / 1000000).toFixed(0);
-            },
+          x: {
+            format: "dd/MM/yy HH:mm",
           },
         },
       },
     };
   }
+
   render() {
     return (
       <div id="chart">

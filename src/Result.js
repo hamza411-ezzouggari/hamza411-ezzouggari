@@ -125,9 +125,6 @@ function Result() {
           />
         </header>
       </div>
-      <div className="hr">
-        <hr />
-      </div>
     </div>
   );
 }

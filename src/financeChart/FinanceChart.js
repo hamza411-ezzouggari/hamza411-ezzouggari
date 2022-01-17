@@ -20,6 +20,18 @@ class ApexChart extends React.Component {
           name: "Total Visits",
           data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47],
         },
+        {
+          name: "Total Visits",
+          data: [97, 67, 54, 89, 25, 18, 22, 17, 42, 36, 15, 27],
+        },
+        {
+          name: "Total Visits",
+          data: [27, 97, 94, 89, 75, 48, 32, 27, 42, 36, 15, 27],
+        },
+        {
+          name: "Total Visits",
+          data: [97, 67, 74, 89, 85, 38, 72, 57, 42, 36, 15, 57],
+        },
       ],
       options: {
         chart: {

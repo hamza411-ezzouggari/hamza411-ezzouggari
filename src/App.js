@@ -5,7 +5,7 @@ import LineChart from "./financeChart/FinanceChart";
 
 function App() {
   const [bids, setBids] = useState([0]);
-  const ws = new WebSocket("wss://localhost:4000/");
+  const ws = new WebSocket("wss://192.168.0.104:4000");
 
   const apiCall = {
     event: "bts:subscribe",

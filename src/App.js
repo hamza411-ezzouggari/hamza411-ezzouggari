@@ -1,38 +1,52 @@
+import React, { useState, useCallback, useEffect } from "react";
 import "./App.css";
-import React, { useState } from "react";
-import Result from "./Result";
-import LineChart from "./financeChart/FinanceChart";
-
+import useWebSocket, { ReadyState } from "react-use-websocket";
 function App() {
-  const [bids, setBids] = useState([0]);
-  const ws = new WebSocket("wss://192.168.0.104:4000");
+  const [socketUrl, setSocketUrl] = useState("wss://localhost:4000");
+  const [messageHistory, setMessageHistory] = useState([]);
 
-  const apiCall = {
-    event: "bts:subscribe",
-    data: { channel: "order_book_btcusd" },
-  };
-
-  ws.onopen = (event) => {
-    ws.send(JSON.stringify(apiCall));
-  };
-
-  console.log(ws);
-
-  ws.onmessage = function (event) {
-    const json = JSON.parse(event.data);
-    try {
-      if ((json.event = "data")) {
-        setBids(json.data.bids.slice());
-      }
-    } catch (err) {
-      console.log(err);
+  const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
+  useEffect(() => {
+    if (lastMessage !== null) {
+      setMessageHistory((prev) => prev.concat(lastMessage));
     }
-  };
+  }, [lastMessage, setMessageHistory]);
+
+  const handleClickChangeSocketUrl = useCallback(
+    () => setSocketUrl("wss://localhost:4000"),
+    []
+  );
+
+  const handleClickSendMessage = useCallback(() => sendMessage("Hello"), []);
+
+  const connectionStatus = {
+    [ReadyState.CONNECTING]: "Connecting",
+    [ReadyState.OPEN]: "Open",
+    [ReadyState.CLOSING]: "Closing",
+    [ReadyState.CLOSED]: "Closed",
+    [ReadyState.UNINSTANTIATED]: "Uninstantiated",
+  }[readyState];
 
   return (
     <div className="App">
-      <Result />
-      <LineChart />
+      <div>
+        <button onClick={handleClickChangeSocketUrl}>
+          Click Me to change Socket Url
+        </button>
+        <button
+          onClick={handleClickSendMessage}
+          disabled={readyState !== ReadyState.OPEN}
+        >
+          Click Me to send 'Hello'
+        </button>
+        <span>The WebSocket is currently {connectionStatus}</span>
+        {lastMessage ? <span>Last message: {lastMessage.data}</span> : null}
+        <ul>
+          {messageHistory.map((message, idx) => (
+            <span key={idx}>{message ? message.data : null}</span>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

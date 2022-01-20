@@ -2,9 +2,9 @@ import React, { useState, useCallback, useEffect } from "react";
 import "./App.css";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 function App() {
-  const [socketUrl, setSocketUrl] = useState("wss://localhost:4000");
+  const [socketUrl, setSocketUrl] = useState("http://localhost:4000");
   const [messageHistory, setMessageHistory] = useState([]);
-
+  console.log(socketUrl);
   const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
   useEffect(() => {
     if (lastMessage !== null) {
@@ -13,7 +13,7 @@ function App() {
   }, [lastMessage, setMessageHistory]);
 
   const handleClickChangeSocketUrl = useCallback(
-    () => setSocketUrl("wss://localhost:4000"),
+    () => setSocketUrl("http://localhost:4000"),
     []
   );
 

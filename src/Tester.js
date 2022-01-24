@@ -1,35 +1,36 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 
-function WebSocketDemo() {
-  const [socketUrl, setSocketUrl] = useState("wss://localhost:3000");
+function Tester() {
+  const [socketUrl, setSocketUrl] = useState("wss//localhost:4000");
   const [messageHistory, setMessageHistory] = useState([]);
+
+  const handleClickChangeSocketUrl = useCallback(
+    () => setSocketUrl("wss//localhost:4000"),
+    []
+  );
 
   const connectionStatus = {
     [ReadyState.CONNECTING]: "Connecting",
     [ReadyState.OPEN]: "Open",
     [ReadyState.CLOSING]: "Closing",
     [ReadyState.CLOSED]: "Closed",
-    [ReadyState.UNINSTANTIATED]: "Uninstantiated",
   }[readyState];
-
-  const handleClickChangeSocketUrl = useCallback(
-    () => setSocketUrl("wss://localhost:3000"),
-    []
-  );
 
   const handleClickSendMessage = useCallback(() => sendMessage("Hello"), []);
 
   useEffect(() => {
+    var lastMessage;
     if (lastMessage !== null) {
       setMessageHistory((prev) => prev.concat(lastMessage));
     }
   }, [lastMessage, setMessageHistory]);
 
-  const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
+  const [sendMessage, lastMessage, readyState] = useWebSocket(socketUrl);
 
   return (
     <div>
+      <p>hamza</p>
       <button onClick={handleClickChangeSocketUrl}>
         Click Me to change Socket Url
       </button>
@@ -49,4 +50,5 @@ function WebSocketDemo() {
     </div>
   );
 }
-export default WebSocketDemo;
+
+export default Tester;

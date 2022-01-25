@@ -10,13 +10,6 @@ function Tester() {
     []
   );
 
-  const connectionStatus = {
-    [ReadyState.CONNECTING]: "Connecting",
-    [ReadyState.OPEN]: "Open",
-    [ReadyState.CLOSING]: "Closing",
-    [ReadyState.CLOSED]: "Closed",
-  }[readyState];
-
   const handleClickSendMessage = useCallback(() => sendMessage("Hello"), []);
 
   useEffect(() => {
@@ -25,7 +18,6 @@ function Tester() {
       setMessageHistory((prev) => prev.concat(lastMessage));
     }
   }, [lastMessage, setMessageHistory]);
-
   const [sendMessage, lastMessage, readyState] = useWebSocket(socketUrl);
 
   return (
@@ -40,7 +32,7 @@ function Tester() {
       >
         Click Me to send 'Hello'
       </button>
-      <span>The WebSocket is currently {connectionStatus}</span>
+      <span>The WebSocket is currently </span>
       {lastMessage ? <span>Last message: {lastMessage.data}</span> : null}
       <ul>
         {messageHistory.map((message, idx) => (

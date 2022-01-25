@@ -11,14 +11,13 @@ function Tester() {
   );
 
   const handleClickSendMessage = useCallback(() => sendMessage("Hello"), []);
-
+  const [sendMessage, lastMessage, readyState] = useWebSocket(socketUrl);
   useEffect(() => {
     var lastMessage;
     if (lastMessage !== null) {
       setMessageHistory((prev) => prev.concat(lastMessage));
     }
   }, [lastMessage, setMessageHistory]);
-  const [sendMessage, lastMessage, readyState] = useWebSocket(socketUrl);
 
   return (
     <div>

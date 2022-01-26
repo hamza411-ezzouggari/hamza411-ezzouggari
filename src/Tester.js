@@ -4,20 +4,20 @@ import useWebSocket, { ReadyState } from "react-use-websocket";
 function Tester() {
   const [socketUrl, setSocketUrl] = useState("wss//localhost:4000");
   const [messageHistory, setMessageHistory] = useState([]);
-
   const handleClickChangeSocketUrl = useCallback(
     () => setSocketUrl("wss//localhost:4000"),
     []
   );
 
   const handleClickSendMessage = useCallback(() => sendMessage("Hello"), []);
-  const [sendMessage, lastMessage, readyState] = useWebSocket(socketUrl);
+
   useEffect(() => {
     var lastMessage;
     if (lastMessage !== null) {
       setMessageHistory((prev) => prev.concat(lastMessage));
     }
   }, [lastMessage, setMessageHistory]);
+  const [sendMessage, lastMessage, readyState] = useWebSocket(socketUrl);
 
   return (
     <div>

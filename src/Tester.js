@@ -1,21 +1,50 @@
-import React, { Component } from "react";
-import { w3cwebsocket as W3CWebSocket } from "websocket";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 
-const client = new W3CWebSocket("ws://localhost:4000");
+const AppWs = () => {
+  const [isPaused, setIsPaused] = useState(false);
+  const [data, setData] = useState();
+  const ws = useRef(null);
 
-class Test extends Component {
-  componentWillMount() {
-    client.onopen = () => {
-      console.log("WebSocket Client Connected");
+  useEffect(() => {
+    if (!isPaused) {
+      ws.current = new WebSocket("wss://ws.kraken.com/");
+      gettingData();
+    }
+    return () => ws.current.close();
+  }, [ws, isPaused]);
+
+  const gettingData = useCallback(() => {
+    if (!ws.current) return;
+
+    ws.current.onmessage = (e) => {
+      if (isPaused) return;
+      const message = JSON.parse(e.data);
+      setData(message);
     };
-    client.onmessage = (message) => {
-      console.log(message);
-    };
-  }
+  }, [isPaused]);
 
-  render() {
-    return <div>Practical Intro To WebSockets.</div>;
-  }
-}
+  return (
+    <>
+      {!!data && (
+        <div>
+          <div>
+            <p>{`connection ID: ${data?.connectionID}`}</p>
+            <p>{`event: ${data?.event}`}</p>
+            <p>{`status: ${data?.status}`}</p>
+            <p>{`version: ${data?.version}`}</p>
+          </div>
+          <button
+            onClick={() => {
+              ws.current.close();
+              setIsPaused(!isPaused);
+            }}
+          >
+            {!isPaused ? "Stop connection" : "open connection"}
+          </button>
+        </div>
+      )}
+    </>
+  );
+};
 
-export default Test;
+export default AppWs;

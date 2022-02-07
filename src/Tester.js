@@ -1,29 +1,52 @@
-import React, { Component } from "react";
-import { w3cwebsocket as W3CWebSocket } from "websocket";
+import React, { useState, useCallback, useEffect } from "react";
+import useWebSocket, { ReadyState } from "react-use-websocket";
 
-const client = new W3CWebSocket("http://localhost:4000/");
-var loc = window.location,
-  new_uri;
-if (loc.protocol === "https:") {
-  new_uri = "wss:";
-} else {
-  new_uri = "ws:";
-}
-new_uri += "//" + loc.host;
-new_uri += loc.pathname + "/to/ws";
-class App extends Component {
-  componentWillMount() {
-    client.onopen = () => {
-      console.log("WebSocket Client Connected");
-    };
-    client.onmessage = (message) => {
-      console.log(message);
-    };
-  }
+export const WebSocketDemo = () => {
+  //Public API that will echo messages sent to it back to the client
+  const [socketUrl, setSocketUrl] = useState("wss://echo.websocket.org");
+  const [messageHistory, setMessageHistory] = useState([]);
 
-  render() {
-    return <div>Practical Intro To WebSockets.</div>;
-  }
-}
+  const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
 
-export default App;
+  useEffect(() => {
+    if (lastMessage !== null) {
+      setMessageHistory((prev) => prev.concat(lastMessage));
+    }
+  }, [lastMessage, setMessageHistory]);
+
+  const handleClickChangeSocketUrl = useCallback(
+    () => setSocketUrl("wss://demos.kaazing.com/echo"),
+    []
+  );
+
+  const handleClickSendMessage = useCallback(() => sendMessage("Hello"), []);
+
+  const connectionStatus = {
+    [ReadyState.CONNECTING]: "Connecting",
+    [ReadyState.OPEN]: "Open",
+    [ReadyState.CLOSING]: "Closing",
+    [ReadyState.CLOSED]: "Closed",
+    [ReadyState.UNINSTANTIATED]: "Uninstantiated",
+  }[readyState];
+
+  return (
+    <div>
+      <button onClick={handleClickChangeSocketUrl}>
+        Click Me to change Socket Url
+      </button>
+      <button
+        onClick={handleClickSendMessage}
+        disabled={readyState !== ReadyState.OPEN}
+      >
+        Click Me to send 'Hello'
+      </button>
+      <span>The WebSocket is currently {connectionStatus}</span>
+      {lastMessage ? <span>Last message: {lastMessage.data}</span> : null}
+      <ul>
+        {messageHistory.map((message, idx) => (
+          <span key={idx}>{message ? message.data : null}</span>
+        ))}
+      </ul>
+    </div>
+  );
+};

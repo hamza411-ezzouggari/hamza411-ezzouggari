@@ -1,9 +1,11 @@
 import "./App.css";
-import Tester from "./Tester";
+import Finance from "./financeChart/FinanceChart";
+import Result from "./Result";
 function App() {
   return (
     <div className="App">
-      <Tester />
+      <Result />
+      <Finance />
     </div>
   );
 }

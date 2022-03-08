@@ -1,11 +1,11 @@
 import "./App.css";
-import Finance from "./financeChart/FinanceChart";
-import Result from "./Result";
+/*import Finance from "./financeChart/FinanceChart";
+import Result from "./Result";*/
+import Test from "./Test";
 function App() {
   return (
     <div className="App">
-      <Result />
-      <Finance />
+      <Test />
     </div>
   );
 }
